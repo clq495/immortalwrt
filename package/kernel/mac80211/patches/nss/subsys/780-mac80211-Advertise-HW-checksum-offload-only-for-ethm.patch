@@ -54,7 +54,7 @@ Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
  				struct ieee80211_key *key, struct sk_buff *skb,
 --- a/net/mac80211/iface.c
 +++ b/net/mac80211/iface.c
-@@ -993,6 +993,18 @@ static int ieee80211_netdev_setup_tc(str
+@@ -995,6 +995,18 @@ static int ieee80211_netdev_setup_tc(str
  	return drv_net_setup_tc(local, sdata, dev, type, type_data);
  }
  
@@ -73,7 +73,7 @@ Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
  static const struct net_device_ops ieee80211_dataif_ops = {
  	.ndo_open		= ieee80211_open,
  	.ndo_stop		= ieee80211_stop,
-@@ -1001,6 +1013,7 @@ static const struct net_device_ops ieee8
+@@ -1003,6 +1015,7 @@ static const struct net_device_ops ieee8
  	.ndo_set_rx_mode	= ieee80211_set_multicast_list,
  	.ndo_set_mac_address 	= ieee80211_change_mac,
  	.ndo_setup_tc		= ieee80211_netdev_setup_tc,
@@ -81,7 +81,7 @@ Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
  };
  
  static u16 ieee80211_monitor_select_queue(struct net_device *dev,
-@@ -1117,6 +1130,7 @@ static const struct net_device_ops ieee8
+@@ -1119,6 +1132,7 @@ static const struct net_device_ops ieee8
  	.ndo_set_mac_address	= ieee80211_change_mac,
  	.ndo_fill_forward_path	= ieee80211_netdev_fill_forward_path,
  	.ndo_setup_tc		= ieee80211_netdev_setup_tc,
@@ -89,7 +89,7 @@ Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
  };
  
  static bool ieee80211_iftype_supports_hdr_offload(enum nl80211_iftype iftype)
-@@ -1179,6 +1193,7 @@ static void ieee80211_set_vif_encap_ops(
+@@ -1181,6 +1195,7 @@ static void ieee80211_set_vif_encap_ops(
  	struct ieee80211_local *local = sdata->local;
  	struct ieee80211_sub_if_data *bss = sdata;
  	bool enabled;
@@ -97,7 +97,7 @@ Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
  
  	if (sdata->vif.type == NL80211_IFTYPE_AP_VLAN &&
  	    !ieee80211_hw_check(&local->hw, SUPPORTS_NSS_OFFLOAD)) {
-@@ -1192,13 +1207,17 @@ static void ieee80211_set_vif_encap_ops(
+@@ -1194,13 +1209,17 @@ static void ieee80211_set_vif_encap_ops(
  	    !ieee80211_iftype_supports_hdr_offload(bss->vif.type))
  		return;
  
@@ -116,7 +116,7 @@ Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
  }
  
  static void ieee80211_recalc_sdata_offload(struct ieee80211_sub_if_data *sdata)
-@@ -1208,8 +1227,8 @@ static void ieee80211_recalc_sdata_offlo
+@@ -1210,8 +1229,8 @@ static void ieee80211_recalc_sdata_offlo
  
  	if (ieee80211_set_sdata_offload_flags(sdata)) {
  		drv_update_vif_offload(local, sdata);
@@ -126,7 +126,7 @@ Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
  
  	list_for_each_entry(vsdata, &local->interfaces, list) {
  		if (vsdata->vif.type != NL80211_IFTYPE_AP_VLAN ||
-@@ -2547,6 +2566,11 @@ int ieee80211_if_add(struct ieee80211_lo
+@@ -2572,6 +2591,11 @@ int ieee80211_if_add(struct ieee80211_lo
  
  		ndev->features |= local->hw.netdev_features;
  		ndev->priv_flags |= IFF_LIVE_ADDR_CHANGE;
@@ -138,7 +138,7 @@ Signed-off-by: Tamizh Chelvam Raja <quic_tamizhr@quicinc.com>
  		ndev->hw_features |= ndev->features &
  					MAC80211_SUPPORTED_FEATURES_TX;
  		sdata->vif.netdev_features = local->hw.netdev_features;
-@@ -2569,6 +2593,9 @@ int ieee80211_if_add(struct ieee80211_lo
+@@ -2594,6 +2618,9 @@ int ieee80211_if_add(struct ieee80211_lo
  			free_netdev(ndev);
  			return ret;
  		}

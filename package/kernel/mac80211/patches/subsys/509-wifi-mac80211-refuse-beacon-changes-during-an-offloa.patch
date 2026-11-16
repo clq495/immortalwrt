@@ -328,7 +328,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
  	/* Close the dependent MBSSID interfaces with wiphy lock as we may be
  	 * terminating its partner links too in case of MLD.
-@@ -1924,6 +1925,9 @@ static void ieee80211_links_removed_work
+@@ -1926,6 +1927,9 @@ static void ieee80211_links_removed_work
  	u16 links = atomic_xchg(&sdata->links_removed, 0);
  	u16 valid_links = sdata->wdev.valid_links;
  
@@ -338,7 +338,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	/* a link that user space removed meanwhile is gone already */
  	links &= valid_links;
  	if (!ieee80211_sdata_running(sdata) || !links || links == valid_links)
-@@ -1944,6 +1948,16 @@ void ieee80211_links_removed(struct ieee
+@@ -1946,6 +1950,16 @@ void ieee80211_links_removed(struct ieee
  }
  EXPORT_SYMBOL_GPL(ieee80211_links_removed);
  
