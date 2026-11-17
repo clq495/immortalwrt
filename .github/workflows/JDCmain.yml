@@ -34,13 +34,7 @@ jobs:
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7621=y
 CONFIG_TARGET_ramips_mt7621_DEVICE_jdcloud_re-sp-01b=y
-CONFIG_PACKAGE_mosquitto-ssl=y
 CONFIG_PACKAGE_luci-app-turboacc=y
-CONFIG_PACKAGE_block-mount=y
-CONFIG_PACKAGE_kmod-fs-ext4=y
-CONFIG_PACKAGE_e2fsprogs=y
-CONFIG_PACKAGE_luci-app-commands=y
-CONFIG_PACKAGE_apk-tools=y
 EOF
           make defconfig
 
