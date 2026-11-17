@@ -50,5 +50,4 @@ jobs:
         with:
           name: 京东云一代 ImmortalWrt 固件
           path: bin/targets/ramips/mt7621/*.bin
-件
-          path: bin/targets/ramips/mt7621/*.bin
+
