@@ -30,12 +30,15 @@ jobs:
 
       - name: 生成京东云一代专属配置
         run: |
-          cat > .config <<'EOF'
-CONFIG_TARGET_ramips=y
-CONFIG_TARGET_ramips_mt7621=y
-CONFIG_TARGET_ramips_mt7621_DEVICE_jdcloud_re-sp-01b=y
-CONFIG_PACKAGE_luci-app-turboacc=y
-EOF
+          echo "CONFIG_TARGET_ramips=y" >> .config
+          echo "CONFIG_TARGET_ramips_mt7621=y" >> .config
+          echo "CONFIG_TARGET_ramips_mt7621_DEVICE_jdcloud_re-sp-01b=y" >> .config
+          echo "CONFIG_PACKAGE_luci-app-turboacc=y" >> .config
+          echo "CONFIG_PACKAGE_block-mount=y" >> .config
+          echo "CONFIG_PACKAGE_kmod-fs-ext4=y" >> .config
+          echo "CONFIG_PACKAGE_e2fsprogs=y" >> .config
+          echo "CONFIG_PACKAGE_luci-app-commands=y" >> .config
+          echo "CONFIG_PACKAGE_apk-tools=y" >> .config
           make defconfig
 
       - name: 执行固件全量编译
@@ -44,6 +47,10 @@ EOF
 
       - name: 上传编译完成固件
         uses: actions/upload-artifact@v4
+        with:
+          name: 京东云一代 ImmortalWrt 固件
+          path: bin/targets/ramips/mt7621/*.bin
+
         with:
           name: 京东云一代 ImmortalWrt 固件
           path: bin/targets/ramips/mt7621/*.bin
